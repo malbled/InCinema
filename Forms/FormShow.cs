@@ -22,7 +22,7 @@ namespace InCinema.Forms
             {
                 myConnection = new SqlConnection(SqlConnectionString);
                 myConnection.Open();
-                string query = "SELECT [FilmTable].[Title],[SessionTable].[Time], [SessionTable].[Price],[SessionTable].[CountTicket] FROM [SessionTable],[FilmTable] WHERE [SessionTable].[TitleFilm] = [FilmTable].[Id] AND [SessionTable].[Date] = CONVERT(date, GETDATE())";
+                string query = "SELECT [FilmTable].[Title],[SessionTable].[Time], [SessionTable].[Price],[SessionTable].[CountTicket] FROM [SessionTable],[FilmTable] WHERE [SessionTable].[TitleFilm] = [FilmTable].[Id] AND [SessionTable].[Date] = CONVERT(date, GETDATE()) AND [SessionTable].[CountTicket] >0";
 
                 var comand = new SqlCommand(query);
                 comand.Connection = myConnection;
@@ -59,7 +59,7 @@ namespace InCinema.Forms
             {
                 myConnection = new SqlConnection(SqlConnectionString);
                 myConnection.Open();
-                string query = "SELECT [FilmTable].[Poster] FROM [FilmTable],[SessionTable] WHERE[SessionTable].[TitleFilm] = [FilmTable].[Id] AND [SessionTable].[Date] = CONVERT(date, GETDATE())";
+                string query = "SELECT [FilmTable].[Poster] FROM [FilmTable],[SessionTable] WHERE[SessionTable].[TitleFilm] = [FilmTable].[Id] AND [SessionTable].[Date] = CONVERT(date, GETDATE()) AND [SessionTable].[CountTicket] >0";
 
                 var comand = new SqlCommand(query);
                 comand.Connection = myConnection;

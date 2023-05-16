@@ -73,8 +73,18 @@ namespace InCinema.Forms
                         DialogResult dialogResult = MessageBox.Show("Удалить запись?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         if (dialogResult == DialogResult.Yes)
                         {
+                            int b = Convert.ToInt32(dgvFilms[0, index].Value);
+                            string guery1 = $"DELETE MoneyTable WHERE TitleFilm = {b}";
+                            SqlConnection connection1 = new SqlConnection(SqlConnectionString);
+                            connection1.Open();
+                            SqlCommand command1 = new SqlCommand(guery1, connection1);
+                            command1.ExecuteNonQuery();
+                            connection1.Close();
+
                             int a = dgvFilms.CurrentRow.Index;
                             dgvFilms.Rows.Remove(dgvFilms.Rows[a]);
+
+                            
                         }
                     }
                     else  MessageBox.Show("Удаление фильма невозможно, поскольку существует Сеанс на этот фильм", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -103,6 +113,11 @@ namespace InCinema.Forms
         private void btnShowAll_Click(object sender, EventArgs e)
         {
             bindingSourceTablFilm.Filter = "";
+        }
+
+        private void dgvFilms_SelectionChanged(object sender, EventArgs e)
+        {
+            btnDelete.Enabled = dgvFilms.SelectedRows.Count > 0;
         }
     }
 }

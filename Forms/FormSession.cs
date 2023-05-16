@@ -11,6 +11,12 @@ namespace InCinema.Forms
         string SqlConnectionString = @"Data Source=LEKSA\SQLEXPRESS;Initial Catalog=InCinemaDB;Integrated Security=True";
         private SqlConnection myConnection;
         bool check;
+        public string Name;
+        public string Date;
+        public string Time;
+        public string Price;
+        public string Count;
+        public string id;
         public FormSession()
         {
             InitializeComponent();
@@ -117,7 +123,7 @@ namespace InCinema.Forms
         }
         private void dgvSession_SelectionChanged(object sender, EventArgs e)
         {
-            btnDelete.Enabled = dgvSession.SelectedRows.Count > 0; ;
+            btnDelete.Enabled = btnSale.Enabled = dgvSession.SelectedRows.Count > 0;
         }
         public void LoadPrint()
         {
@@ -125,7 +131,7 @@ namespace InCinema.Forms
             {
                 myConnection = new SqlConnection(SqlConnectionString);
                 myConnection.Open();
-                string query = "\tSELECT [SessionTable].[Id], [FilmTable].[Title],[SessionTable].[Date],[SessionTable].[Time], [SessionTable].[Price],\r\n[SessionTable].[CountTicket] FROM [SessionTable],[FilmTable] WHERE [SessionTable].[TitleFilm] = [FilmTable].[Id] AND [SessionTable].[Date] >= CONVERT(date, GETDATE())";
+                string query = "\tSELECT [SessionTable].[Id], [FilmTable].[Title],[SessionTable].[Date],[SessionTable].[Time], [SessionTable].[Price],\r\n[SessionTable].[CountTicket] FROM [SessionTable],[FilmTable] WHERE [SessionTable].[TitleFilm] = [FilmTable].[Id] AND [SessionTable].[Date] >= CONVERT(date, GETDATE()) AND [SessionTable].[CountTicket] >0";
 
                 var comand = new SqlCommand(query);
                 comand.Connection = myConnection;
@@ -159,6 +165,21 @@ namespace InCinema.Forms
             {
                 myConnection.Close();
             }
+        }
+
+        public void btnSale_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvSession.SelectedRows)
+            {
+                id = row.Cells[0].Value.ToString();
+                Name  = row.Cells[1].Value.ToString();
+                Date = row.Cells[2].Value.ToString();
+                Time = row.Cells[3].Value.ToString();
+                Price = row.Cells[4].Value.ToString();
+                Count = row.Cells[5].Value.ToString();
+            }
+            FormSale formSale = new FormSale(id,Name,Date,Time,Price,Count);
+            formSale.ShowDialog(this);
         }
     }
 }

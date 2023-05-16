@@ -99,6 +99,7 @@
             this.dgvFilms.ReadOnly = true;
             this.dgvFilms.Size = new System.Drawing.Size(1021, 608);
             this.dgvFilms.TabIndex = 5;
+            this.dgvFilms.SelectionChanged += new System.EventHandler(this.dgvFilms_SelectionChanged);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -180,6 +181,7 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.Enabled = false;
             this.btnDelete.Image = global::InCinema.Properties.Resources.ico_delete;
             this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDelete.Name = "btnDelete";

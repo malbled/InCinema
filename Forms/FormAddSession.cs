@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -6,6 +8,8 @@ namespace InCinema.Forms
 {
     public partial class FormAddSession : Form
     {
+        private SqlConnection myConnection;
+        public SqlConnection connection3;
         public FormAddSession()
         {
             InitializeComponent();
@@ -45,11 +49,44 @@ namespace InCinema.Forms
             SqlCommand command = new SqlCommand(qwery, connection);
             command.ExecuteNonQuery();
             connection.Close();
+
+            try
+            {
+                myConnection = new SqlConnection(CONECT);
+                myConnection.Open();
+                string qwery1 = $"SELECT [MoneyTable].[TitleFilm] FROM [SessionTable],[MoneyTable] WHERE {cmbTitleFilm.SelectedValue} = [MoneyTable].[TitleFilm]";
+                var comand = new SqlCommand(qwery1);
+                comand.Connection = myConnection;
+                var reader = comand.ExecuteReader();
+                int data;
+                if (reader.HasRows == false)
+                {
+                    string qwery3 = $"INSERT MoneyTable VALUES ({cmbTitleFilm.SelectedValue},{0.000})";
+                    
+                    connection3 = new SqlConnection(CONECT);
+                    connection3.Open();
+                    SqlCommand command3 = new SqlCommand(qwery3, connection3);
+                    command3.ExecuteNonQuery();
+                    connection3.Close();
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+
             FormSession main = this.Owner as FormSession;
             main.dgvSession.Rows.Clear();
             main.LoadPrint();
             this.Close();
-
         }
 
         private void btnClose_Click(object sender, EventArgs e)

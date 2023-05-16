@@ -42,9 +42,6 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.btnAdd = new System.Windows.Forms.ToolStripButton();
-            this.btnSave = new System.Windows.Forms.ToolStripButton();
-            this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSort = new System.Windows.Forms.Button();
             this.rb2 = new System.Windows.Forms.RadioButton();
@@ -54,6 +51,10 @@
             this.bindingSourceTablSession = new System.Windows.Forms.BindingSource(this.components);
             this.cinemaDBDataSet = new InCinema.CinemaDBDataSet();
             this.sessionTableTableAdapter = new InCinema.CinemaDBDataSetTableAdapters.SessionTableTableAdapter();
+            this.btnSale = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.ToolStripButton();
+            this.btnSave = new System.Windows.Forms.ToolStripButton();
+            this.btnDelete = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSession)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).BeginInit();
             this.bindingNavigator.SuspendLayout();
@@ -168,33 +169,6 @@
             this.bindingNavigator.TabIndex = 0;
             this.bindingNavigator.Text = "bindingNavigator1";
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::InCinema.Properties.Resources.ico_add;
-            this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(79, 22);
-            this.btnAdd.Text = "Добавить";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Image = global::InCinema.Properties.Resources.ico_save;
-            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(86, 22);
-            this.btnSave.Text = "&Сохранить";
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Enabled = false;
-            this.btnDelete.Image = global::InCinema.Properties.Resources.ico_delete;
-            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(71, 22);
-            this.btnDelete.Text = "Удалить";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnSort);
@@ -285,12 +259,54 @@
             // 
             this.sessionTableTableAdapter.ClearBeforeFill = true;
             // 
+            // btnSale
+            // 
+            this.btnSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(142)))), ((int)(((byte)(218)))));
+            this.btnSale.Enabled = false;
+            this.btnSale.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnSale.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSale.Location = new System.Drawing.Point(1133, 461);
+            this.btnSale.Name = "btnSale";
+            this.btnSale.Size = new System.Drawing.Size(226, 52);
+            this.btnSale.TabIndex = 7;
+            this.btnSale.Text = "Продать билет";
+            this.btnSale.UseVisualStyleBackColor = false;
+            this.btnSale.Click += new System.EventHandler(this.btnSale_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::InCinema.Properties.Resources.ico_add;
+            this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(79, 22);
+            this.btnAdd.Text = "Добавить";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Image = global::InCinema.Properties.Resources.ico_save;
+            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(86, 22);
+            this.btnSave.Text = "&Сохранить";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Image = global::InCinema.Properties.Resources.ico_delete;
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(71, 22);
+            this.btnDelete.Text = "Удалить";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // FormSession
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.ClientSize = new System.Drawing.Size(1424, 660);
+            this.Controls.Add(this.btnSale);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvSession);
             this.Controls.Add(this.bindingNavigator);
@@ -337,5 +353,6 @@
         private System.Windows.Forms.BindingSource bindingSourceTablSession;
         private CinemaDBDataSet cinemaDBDataSet;
         private CinemaDBDataSetTableAdapters.SessionTableTableAdapter sessionTableTableAdapter;
+        private System.Windows.Forms.Button btnSale;
     }
 }
