@@ -1,18 +1,52 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace InCinema.Forms
 {
     public partial class FormCashier : Form
     {
+        string SqlConnectionString = @"Data Source=LEKSA\SQLEXPRESS;Initial Catalog=InCinemaDB;Integrated Security=True";
+        private SqlConnection myConnection;
+        decimal data;
         public FormCashier()
         {
             InitializeComponent();
         }
         private void статистикаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // MessageBox.Show("Доход за всё время работы >> ","Статистика",MessageBoxButtons.OK, MessageBoxIcon.Information);
-           // в разработке
+            try
+            {
+                myConnection = new SqlConnection(SqlConnectionString);
+                myConnection.Open();
+                string query = "SELECT SUM([AllPrice]) FROM [MoneyTable]";
+
+                var comand = new SqlCommand(query);
+                comand.Connection = myConnection;
+                var reader = comand.ExecuteReader();
+                if (reader.HasRows == false)
+                {
+                    MessageBox.Show("Данные отсутствуют", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+                else
+                {
+                    while (reader.Read())
+                    {
+                        data = Convert.ToDecimal( reader[0]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+            string str = data.ToString();
+            MessageBox.Show($"Доход за всё время работы >> {str.Substring(0, (str.Length - 2))}" + " ₽", "Статистика",MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void фильмыToolStripMenuItem_Click(object sender, EventArgs e)
@@ -45,7 +79,8 @@ namespace InCinema.Forms
 
         private void boxOfficeMenuItem_Click(object sender, EventArgs e)
         {
-            //в разработке
+            FormExport formExport = new FormExport();
+            formExport.Show();
         }
     }
 }

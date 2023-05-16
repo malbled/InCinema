@@ -104,6 +104,7 @@
             this.exportMenuItem.Size = new System.Drawing.Size(198, 27);
             this.exportMenuItem.Text = "Сбор с фильмов";
             this.exportMenuItem.ToolTipText = "Экспорт данных в Excel";
+            this.exportMenuItem.Click += new System.EventHandler(this.boxOfficeMenuItem_Click);
             // 
             // btnAbout
             // 
