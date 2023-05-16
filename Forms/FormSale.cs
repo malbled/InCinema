@@ -10,8 +10,10 @@ namespace InCinema.Forms
         int MaxCount;
         int id;
         string SqlConnectionString = @"Data Source=LEKSA\SQLEXPRESS;Initial Catalog=InCinemaDB;Integrated Security=True";
-        private SqlConnection myConnection;
+        
         int dop;
+        int dopM;
+        decimal dopPrice;
         public FormSale(string id,string name, string date, string time, string Price, string Count)
         {
             InitializeComponent();
@@ -38,9 +40,10 @@ namespace InCinema.Forms
 
         private void btnPay_Click(object sender, EventArgs e)
         {
+            SqlConnection myConnection;
+            myConnection = new SqlConnection(SqlConnectionString);
             try
             {
-                myConnection = new SqlConnection(SqlConnectionString);
                 myConnection.Open();
                 string query = $"SELECT [SessionTable].[CountTicket] FROM [SessionTable] WHERE [Id]={id}";
                 var comand = new SqlCommand(query);
@@ -68,12 +71,81 @@ namespace InCinema.Forms
                 myConnection.Close();
             }
 
-            myConnection = new SqlConnection(SqlConnectionString);
-            myConnection.Open();
+            SqlConnection myConnectionP;
+            myConnectionP = new SqlConnection(SqlConnectionString);
+            myConnectionP.Open();
             string query1 = $"UPDATE [SessionTable] SET [CountTicket]={dop- Convert.ToInt32(numUpDown.Value)} WHERE [Id]={id}";
-            SqlCommand command = new SqlCommand(query1, myConnection);
-            command.ExecuteNonQuery();
-            myConnection.Close();
+            SqlCommand command1 = new SqlCommand(query1, myConnectionP);
+            command1.ExecuteNonQuery();
+            myConnectionP.Close();
+
+            SqlConnection myConnectionM = new SqlConnection(SqlConnectionString);
+            try
+            {
+                myConnectionM.Open();
+                string queryM = $"SELECT [FilmTable].[Id] FROM [FilmTable] WHERE [FilmTable].[Title] = '{txtName.Text}'";
+                var comandM = new SqlCommand(queryM);
+                comandM.Connection = myConnectionM;
+                var reader = comandM.ExecuteReader();
+
+                if (reader.HasRows == false)
+                {
+                    MessageBox.Show("Данные не найдены!");
+                }
+                else
+                {
+                    while (reader.Read())
+                    {
+                        dopM = Convert.ToInt32(reader[0]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                myConnectionM.Close();
+            }
+            SqlConnection myConnectionN = new SqlConnection(SqlConnectionString);
+            try
+            {
+                myConnectionN.Open();
+                string queryN = $"SELECT [MoneyTable].[AllPrice] FROM [MoneyTable] WHERE [MoneyTable].[TitleFilm] = {dopM}";
+                var comandN = new SqlCommand(queryN);
+                comandN.Connection = myConnectionN;
+                var reader = comandN.ExecuteReader();
+
+                if (reader.HasRows == false)
+                {
+                    MessageBox.Show("Данные не найдены!");
+                }
+                else
+                {
+                    while (reader.Read())
+                    {
+                        dopPrice = Convert.ToDecimal(reader[0]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                myConnectionN.Close();
+            }
+            string str = (dopPrice + Convert.ToDecimal(txtPrice.Text)).ToString();
+            str.Replace(',', '.');
+            SqlConnection myConnectionK = new SqlConnection(SqlConnectionString);
+            myConnectionK.Open();
+            string queryK = $"UPDATE [MoneyTable] SET [AllPrice] = {str.Replace(',', '.')} WHERE [TitleFilm] = {dopM}";
+            SqlCommand commandK = new SqlCommand(queryK, myConnectionK);
+            commandK.ExecuteNonQuery();
+            myConnectionK.Close();
+
             MessageBox.Show("Оплата прошла!", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             FormSession main = this.Owner as FormSession;
             main.dgvSession.Rows.Clear();
