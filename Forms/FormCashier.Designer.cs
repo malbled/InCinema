@@ -35,7 +35,6 @@
             this.сеансыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.статистикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.boxOfficeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnUser = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +55,7 @@
             this.btnUser});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(659, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(716, 31);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -100,21 +99,11 @@
             // 
             // exportMenuItem
             // 
-            this.exportMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.boxOfficeMenuItem});
             this.exportMenuItem.Image = global::InCinema.Properties.Resources.ico_excel;
             this.exportMenuItem.Name = "exportMenuItem";
-            this.exportMenuItem.Size = new System.Drawing.Size(117, 27);
-            this.exportMenuItem.Text = "Экспорт";
+            this.exportMenuItem.Size = new System.Drawing.Size(198, 27);
+            this.exportMenuItem.Text = "Сбор с фильмов";
             this.exportMenuItem.ToolTipText = "Экспорт данных в Excel";
-            // 
-            // boxOfficeMenuItem
-            // 
-            this.boxOfficeMenuItem.Name = "boxOfficeMenuItem";
-            this.boxOfficeMenuItem.Size = new System.Drawing.Size(240, 28);
-            this.boxOfficeMenuItem.Text = "Сбор с фильмов";
-            this.boxOfficeMenuItem.ToolTipText = "Экспорт данных в Excel\r\nСборов с каждого фильма";
-            this.boxOfficeMenuItem.Click += new System.EventHandler(this.boxOfficeMenuItem_Click);
             // 
             // btnAbout
             // 
@@ -142,15 +131,14 @@
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(248)))), ((int)(((byte)(239)))));
-            this.label2.Location = new System.Drawing.Point(107, 196);
+            this.label2.Location = new System.Drawing.Point(101, 179);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(458, 70);
+            this.label2.Size = new System.Drawing.Size(509, 97);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Информационная сиcтема\r\n\"InCinema\"";
+            this.label2.Text = "Информационная система\r\n\"InCinema\"";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormCashier
@@ -158,7 +146,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.ClientSize = new System.Drawing.Size(659, 476);
+            this.ClientSize = new System.Drawing.Size(716, 476);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -183,7 +171,6 @@
         private System.Windows.Forms.ToolStripMenuItem сеансыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem статистикаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem boxOfficeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btnAbout;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem btnUser;

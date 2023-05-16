@@ -111,6 +111,7 @@
             // 
             this.txtTitle.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtTitle.Location = new System.Drawing.Point(219, 159);
+            this.txtTitle.MaxLength = 50;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(222, 27);
             this.txtTitle.TabIndex = 1;
@@ -120,6 +121,7 @@
             // 
             this.txtStyle.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtStyle.Location = new System.Drawing.Point(219, 226);
+            this.txtStyle.MaxLength = 50;
             this.txtStyle.Name = "txtStyle";
             this.txtStyle.Size = new System.Drawing.Size(222, 27);
             this.txtStyle.TabIndex = 2;
@@ -129,6 +131,7 @@
             // 
             this.txtTime.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtTime.Location = new System.Drawing.Point(219, 289);
+            this.txtTime.MaxLength = 10;
             this.txtTime.Name = "txtTime";
             this.txtTime.Size = new System.Drawing.Size(222, 27);
             this.txtTime.TabIndex = 3;
@@ -139,6 +142,7 @@
             // 
             this.txtPoster.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtPoster.Location = new System.Drawing.Point(28, 409);
+            this.txtPoster.MaxLength = 300;
             this.txtPoster.Name = "txtPoster";
             this.txtPoster.Size = new System.Drawing.Size(413, 27);
             this.txtPoster.TabIndex = 4;

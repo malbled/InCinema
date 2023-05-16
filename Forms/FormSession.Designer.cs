@@ -51,10 +51,15 @@
             this.rb1 = new System.Windows.Forms.RadioButton();
             this.listBoxSort = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.bindingSourceTablSession = new System.Windows.Forms.BindingSource(this.components);
+            this.cinemaDBDataSet = new InCinema.CinemaDBDataSet();
+            this.sessionTableTableAdapter = new InCinema.CinemaDBDataSetTableAdapters.SessionTableTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSession)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).BeginInit();
             this.bindingNavigator.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTablSession)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cinemaDBDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvSession
@@ -91,6 +96,7 @@
             this.dgvSession.ReadOnly = true;
             this.dgvSession.Size = new System.Drawing.Size(1051, 608);
             this.dgvSession.TabIndex = 1;
+            this.dgvSession.SelectionChanged += new System.EventHandler(this.dgvSession_SelectionChanged);
             // 
             // Column1
             // 
@@ -178,10 +184,10 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(86, 22);
             this.btnSave.Text = "&Сохранить";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnDelete
             // 
+            this.btnDelete.Enabled = false;
             this.btnDelete.Image = global::InCinema.Properties.Resources.ico_delete;
             this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDelete.Name = "btnDelete";
@@ -265,6 +271,20 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Поле для сортировки";
             // 
+            // bindingSourceTablSession
+            // 
+            this.bindingSourceTablSession.DataMember = "SessionTable";
+            this.bindingSourceTablSession.DataSource = this.cinemaDBDataSet;
+            // 
+            // cinemaDBDataSet
+            // 
+            this.cinemaDBDataSet.DataSetName = "CinemaDBDataSet";
+            this.cinemaDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // sessionTableTableAdapter
+            // 
+            this.sessionTableTableAdapter.ClearBeforeFill = true;
+            // 
             // FormSession
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -288,6 +308,8 @@
             this.bindingNavigator.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTablSession)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cinemaDBDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,5 +334,8 @@
         private System.Windows.Forms.ListBox listBoxSort;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.BindingNavigator bindingNavigator;
+        private System.Windows.Forms.BindingSource bindingSourceTablSession;
+        private CinemaDBDataSet cinemaDBDataSet;
+        private CinemaDBDataSetTableAdapters.SessionTableTableAdapter sessionTableTableAdapter;
     }
 }

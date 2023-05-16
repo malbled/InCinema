@@ -45,7 +45,11 @@ namespace InCinema.Forms
             SqlCommand command = new SqlCommand(qwery, connection);
             command.ExecuteNonQuery();
             connection.Close();
-            Close();
+            FormSession main = this.Owner as FormSession;
+            main.dgvSession.Rows.Clear();
+            main.LoadPrint();
+            this.Close();
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)

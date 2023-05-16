@@ -17,7 +17,7 @@ namespace InCinema
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormCashier());
+            Application.Run(new FormShow());
         }
     }
 }
