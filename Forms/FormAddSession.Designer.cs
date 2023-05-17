@@ -209,7 +209,7 @@
             // 
             this.txtPrice.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtPrice.Location = new System.Drawing.Point(243, 360);
-            this.txtPrice.Mask = "###.##";
+            this.txtPrice.Mask = "999.99";
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(178, 27);
             this.txtPrice.TabIndex = 4;
