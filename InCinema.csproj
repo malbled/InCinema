@@ -206,7 +206,9 @@
     <None Include="Resources\icons8-удалить-25.png" />
     <None Include="Resources\icons8-сохранить-32.png" />
     <None Include="Resources\Справка о программе.docx" />
-    <Content Include="Новый-проект.ico" />
+    <Content Include="Новый-проект.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

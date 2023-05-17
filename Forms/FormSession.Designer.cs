@@ -312,7 +312,6 @@
             this.Controls.Add(this.dgvSession);
             this.Controls.Add(this.bindingNavigator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1440, 699);
             this.Name = "FormSession";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

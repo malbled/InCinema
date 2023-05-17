@@ -10,11 +10,10 @@ namespace InCinema.Forms
         int MaxCount;
         int id;
         string SqlConnectionString = @"Data Source=LEKSA\SQLEXPRESS;Initial Catalog=InCinemaDB;Integrated Security=True";
-        
         int dop;
         int dopM;
         decimal dopPrice;
-        //загрузка данных о сенссе в форму для продажи
+        //загрузка данных о сеансе в форму для продажи
         public FormSale(string id,string name, string date, string time, string Price, string Count)
         {
             InitializeComponent();
@@ -28,58 +27,28 @@ namespace InCinema.Forms
             MaxCount = Convert.ToInt32(Count);
             numUpDown.Maximum = MaxCount;
         }
-
+        //изменение Цены чека взависимости от значения Количество билетов
         private void numUpDown_ValueChanged(object sender, EventArgs e)
         {
             txtPrice.Text = (numUpDown.Value * StartPrice).ToString();
         }
-
+        //закрытие формы
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        //процесс оплаты
         private void btnPay_Click(object sender, EventArgs e)
         {
-            SqlConnection myConnection;
-            myConnection = new SqlConnection(SqlConnectionString);
-            try
-            {
-                myConnection.Open();
-                string query = $"SELECT [SessionTable].[CountTicket] FROM [SessionTable] WHERE [Id]={id}";
-                var comand = new SqlCommand(query);
-                comand.Connection = myConnection;
-                var reader = comand.ExecuteReader();
-                
-                if (reader.HasRows == false)
-                {
-                    MessageBox.Show("Данные не найдены!");
-                }
-                else
-                {
-                    while (reader.Read())
-                    {
-                        dop = Convert.ToInt32(reader[0]);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                myConnection.Close();
-            }
-
+            //обновляем кол-во билетов на сеанс, взависимости от выбранного кол-ва билетов
             SqlConnection myConnectionP;
             myConnectionP = new SqlConnection(SqlConnectionString);
             myConnectionP.Open();
-            string query1 = $"UPDATE [SessionTable] SET [CountTicket]={dop- Convert.ToInt32(numUpDown.Value)} WHERE [Id]={id}";
+            string query1 = $"UPDATE [SessionTable] SET [CountTicket]={MaxCount - Convert.ToInt32(numUpDown.Value)} WHERE [Id]={id}";
             SqlCommand command1 = new SqlCommand(query1, myConnectionP);
             command1.ExecuteNonQuery();
             myConnectionP.Close();
-
+            //находим id фильма в базе на который покупается билет
             SqlConnection myConnectionM = new SqlConnection(SqlConnectionString);
             try
             {
@@ -109,6 +78,7 @@ namespace InCinema.Forms
             {
                 myConnectionM.Close();
             }
+            //находим кассовый сбор в базе на указанный фильм
             SqlConnection myConnectionN = new SqlConnection(SqlConnectionString);
             try
             {
@@ -138,6 +108,7 @@ namespace InCinema.Forms
             {
                 myConnectionN.Close();
             }
+            //обновляем кассовый сбор для указанного фильма
             string str = (dopPrice + Convert.ToDecimal(txtPrice.Text)).ToString();
             str.Replace(',', '.');
             SqlConnection myConnectionK = new SqlConnection(SqlConnectionString);
@@ -146,7 +117,7 @@ namespace InCinema.Forms
             SqlCommand commandK = new SqlCommand(queryK, myConnectionK);
             commandK.ExecuteNonQuery();
             myConnectionK.Close();
-
+            //выводм сообщение об успешной оплате, обновляем daatgridview в сеансах, закрываем форму
             MessageBox.Show("Оплата прошла!", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             FormSession main = this.Owner as FormSession;
             main.dgvSession.Rows.Clear();

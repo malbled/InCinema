@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace InCinema.Forms
 {
@@ -15,7 +15,7 @@ namespace InCinema.Forms
         {
             InitializeComponent();
         }
-
+        //загрузка сеансов на форму
         private void FormShow_Load(object sender, System.EventArgs e)
         {
             try
@@ -54,7 +54,7 @@ namespace InCinema.Forms
             {
                 myConnection.Close();
             }
-
+            //динамическое добавление картинок на фильм
             try
             {
                 myConnection = new SqlConnection(SqlConnectionString);
