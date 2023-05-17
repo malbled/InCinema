@@ -27,6 +27,9 @@ namespace InCinema.Forms
             {
                 cmbFiltr.Items.Add(DR[0]);
             }
+            int rows = dgvFilms.Rows.Count;
+            allFilmLabel.Text = "Общее количество фильмов: " + rows.ToString();
+
         }
         //открытие формы добавление фильма
         private void btnAdd_Click(object sender, EventArgs e)
@@ -38,6 +41,8 @@ namespace InCinema.Forms
         private void btnSaveTool_Click(object sender, EventArgs e)
         {
             this.filmTableTableAdapter.Update(this.cinemaDBDataSet);
+            int rows = dgvFilms.Rows.Count;
+            allFilmLabel.Text = "Общее количество фильмов: " + rows.ToString();
         }
         //удаление фильма из базы данных
         private void btnDelete_Click(object sender, EventArgs e)

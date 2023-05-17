@@ -120,6 +120,8 @@ namespace InCinema.Forms
         //при загрузке формы
         private void FormSession_Load(object sender, EventArgs e)
         {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "cinemaDBDataSet.FilmTable". При необходимости она может быть перемещена или удалена.
+            this.filmTableTableAdapter.Fill(this.cinemaDBDataSet.FilmTable);
             LoadPrint();
         }
         //активация кнопок при выборе строки из datagridview
@@ -130,6 +132,7 @@ namespace InCinema.Forms
         //закрузка данных о сенсах в datagridview
         public void LoadPrint()
         {
+            
             try
             {
                 myConnection = new SqlConnection(SqlConnectionString);
@@ -168,6 +171,8 @@ namespace InCinema.Forms
             {
                 myConnection.Close();
             }
+            int rows = dgvSession.Rows.Count;
+            allSessionLabel.Text = "Общее количество сеансов: " + rows.ToString();
         }
         //открытие формы продажи билета и передача данных о выбранном сеансе
         public void btnSale_Click(object sender, EventArgs e)
@@ -194,5 +199,23 @@ namespace InCinema.Forms
             commandD.ExecuteNonQuery();
             connectionD.Close();
         }
+        
+        private void cmbTitleFilm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //1 способ
+            List<int> list = new List<int>();
+            dgvSession.ClearSelection();
+            dgvSession.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            for (int i = 0; i <= dgvSession.Rows.Count - 1; i++)
+                for (int j = 0; j <= dgvSession.ColumnCount - 1; j++)
+                    if (dgvSession.Rows[i].Cells[j].Value != null && dgvSession.Rows[i].Cells[j].Value.ToString() == cmbTitleFilm.Text)
+                        dgvSession.Rows[i].Cells[j].Selected = true;
+            int c = dgvSession.SelectedRows.Count;
+            if (c == 0)
+            {
+                MessageBox.Show("Данные не найдены", "Сообщение1", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+        }
+
     }
 }

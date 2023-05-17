@@ -55,12 +55,20 @@
             this.cinemaDBDataSet = new InCinema.CinemaDBDataSet();
             this.sessionTableTableAdapter = new InCinema.CinemaDBDataSetTableAdapters.SessionTableTableAdapter();
             this.btnSale = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.allSessionLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbTitleFilm = new System.Windows.Forms.ComboBox();
+            this.bindingSourceTablFilm = new System.Windows.Forms.BindingSource(this.components);
+            this.filmTableTableAdapter = new InCinema.CinemaDBDataSetTableAdapters.FilmTableTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSession)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).BeginInit();
             this.bindingNavigator.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTablSession)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cinemaDBDataSet)).BeginInit();
+            this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTablFilm)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvSession
@@ -95,7 +103,7 @@
             this.dgvSession.Location = new System.Drawing.Point(12, 40);
             this.dgvSession.Name = "dgvSession";
             this.dgvSession.ReadOnly = true;
-            this.dgvSession.Size = new System.Drawing.Size(1051, 608);
+            this.dgvSession.Size = new System.Drawing.Size(1051, 595);
             this.dgvSession.TabIndex = 1;
             this.dgvSession.SelectionChanged += new System.EventHandler(this.dgvSession_SelectionChanged);
             // 
@@ -293,7 +301,7 @@
             this.btnSale.Enabled = false;
             this.btnSale.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnSale.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSale.Location = new System.Drawing.Point(1133, 461);
+            this.btnSale.Location = new System.Drawing.Point(1133, 568);
             this.btnSale.Name = "btnSale";
             this.btnSale.Size = new System.Drawing.Size(226, 52);
             this.btnSale.TabIndex = 7;
@@ -301,12 +309,67 @@
             this.btnSale.UseVisualStyleBackColor = false;
             this.btnSale.Click += new System.EventHandler(this.btnSale_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allSessionLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 638);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1424, 22);
+            this.statusStrip1.TabIndex = 8;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // allSessionLabel
+            // 
+            this.allSessionLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.allSessionLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.allSessionLabel.Name = "allSessionLabel";
+            this.allSessionLabel.Size = new System.Drawing.Size(225, 17);
+            this.allSessionLabel.Text = "Общее количество сеансов: 10";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(1082, 419);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(330, 23);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Поиск по названию фильма:";
+            // 
+            // cmbTitleFilm
+            // 
+            this.cmbTitleFilm.DataSource = this.bindingSourceTablFilm;
+            this.cmbTitleFilm.DisplayMember = "Title";
+            this.cmbTitleFilm.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmbTitleFilm.FormattingEnabled = true;
+            this.cmbTitleFilm.Location = new System.Drawing.Point(1086, 464);
+            this.cmbTitleFilm.Name = "cmbTitleFilm";
+            this.cmbTitleFilm.Size = new System.Drawing.Size(326, 26);
+            this.cmbTitleFilm.TabIndex = 9;
+            this.cmbTitleFilm.ValueMember = "Id";
+            this.cmbTitleFilm.SelectedIndexChanged += new System.EventHandler(this.cmbTitleFilm_SelectedIndexChanged);
+            // 
+            // bindingSourceTablFilm
+            // 
+            this.bindingSourceTablFilm.DataMember = "FilmTable";
+            this.bindingSourceTablFilm.DataSource = this.cinemaDBDataSet;
+            // 
+            // filmTableTableAdapter
+            // 
+            this.filmTableTableAdapter.ClearBeforeFill = true;
+            // 
             // FormSession
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.ClientSize = new System.Drawing.Size(1424, 660);
+            this.Controls.Add(this.cmbTitleFilm);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnSale);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvSession);
@@ -326,6 +389,9 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTablSession)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cinemaDBDataSet)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTablFilm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -354,5 +420,11 @@
         private CinemaDBDataSet cinemaDBDataSet;
         private CinemaDBDataSetTableAdapters.SessionTableTableAdapter sessionTableTableAdapter;
         private System.Windows.Forms.Button btnSale;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel allSessionLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbTitleFilm;
+        private System.Windows.Forms.BindingSource bindingSourceTablFilm;
+        private CinemaDBDataSetTableAdapters.FilmTableTableAdapter filmTableTableAdapter;
     }
 }

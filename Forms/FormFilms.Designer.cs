@@ -48,11 +48,14 @@
             this.cmbFiltr = new System.Windows.Forms.ComboBox();
             this.btnFiltr = new System.Windows.Forms.Button();
             this.btnShowAll = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.allFilmLabel = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTablFilm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cinemaDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // bindingSourceTablFilm
@@ -97,7 +100,7 @@
             this.dgvFilms.Location = new System.Drawing.Point(12, 40);
             this.dgvFilms.Name = "dgvFilms";
             this.dgvFilms.ReadOnly = true;
-            this.dgvFilms.Size = new System.Drawing.Size(1021, 608);
+            this.dgvFilms.Size = new System.Drawing.Size(1021, 595);
             this.dgvFilms.TabIndex = 5;
             this.dgvFilms.SelectionChanged += new System.EventHandler(this.dgvFilms_SelectionChanged);
             // 
@@ -230,12 +233,32 @@
             this.btnShowAll.UseVisualStyleBackColor = false;
             this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allFilmLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 638);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1496, 22);
+            this.statusStrip1.TabIndex = 6;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // allFilmLabel
+            // 
+            this.allFilmLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.allFilmLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.allFilmLabel.Name = "allFilmLabel";
+            this.allFilmLabel.Size = new System.Drawing.Size(220, 17);
+            this.allFilmLabel.Text = "Общее количество фильмов: 0";
+            // 
             // FormFilms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.ClientSize = new System.Drawing.Size(1496, 660);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnFiltr);
             this.Controls.Add(this.btnShowAll);
             this.Controls.Add(this.cmbFiltr);
@@ -254,6 +277,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,5 +302,7 @@
         private System.Windows.Forms.ComboBox cmbFiltr;
         private System.Windows.Forms.Button btnFiltr;
         private System.Windows.Forms.Button btnShowAll;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel allFilmLabel;
     }
 }
