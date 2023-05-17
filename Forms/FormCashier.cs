@@ -74,7 +74,8 @@ namespace InCinema.Forms
         //вызов справки о программе
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Справка о программе", "Справка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            FormHelp formHelp = new FormHelp();
+            formHelp.ShowDialog(this);
         }
         //переход на форму по кассовому сбору с фильмов
         private void boxOfficeMenuItem_Click(object sender, EventArgs e)
