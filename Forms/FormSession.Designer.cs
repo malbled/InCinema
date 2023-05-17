@@ -42,6 +42,9 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.btnAdd = new System.Windows.Forms.ToolStripButton();
+            this.btnSave = new System.Windows.Forms.ToolStripButton();
+            this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSort = new System.Windows.Forms.Button();
             this.rb2 = new System.Windows.Forms.RadioButton();
@@ -52,9 +55,6 @@
             this.cinemaDBDataSet = new InCinema.CinemaDBDataSet();
             this.sessionTableTableAdapter = new InCinema.CinemaDBDataSetTableAdapters.SessionTableTableAdapter();
             this.btnSale = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.ToolStripButton();
-            this.btnSave = new System.Windows.Forms.ToolStripButton();
-            this.btnDelete = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSession)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).BeginInit();
             this.bindingNavigator.SuspendLayout();
@@ -169,6 +169,34 @@
             this.bindingNavigator.TabIndex = 0;
             this.bindingNavigator.Text = "bindingNavigator1";
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::InCinema.Properties.Resources.ico_add;
+            this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(79, 22);
+            this.btnAdd.Text = "Добавить";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Image = global::InCinema.Properties.Resources.ico_save;
+            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(86, 22);
+            this.btnSave.Text = "&Сохранить";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Image = global::InCinema.Properties.Resources.ico_delete;
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(71, 22);
+            this.btnDelete.Text = "Удалить";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnSort);
@@ -272,33 +300,6 @@
             this.btnSale.Text = "Продать билет";
             this.btnSale.UseVisualStyleBackColor = false;
             this.btnSale.Click += new System.EventHandler(this.btnSale_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::InCinema.Properties.Resources.ico_add;
-            this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(79, 22);
-            this.btnAdd.Text = "Добавить";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Image = global::InCinema.Properties.Resources.ico_save;
-            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(86, 22);
-            this.btnSave.Text = "&Сохранить";
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Enabled = false;
-            this.btnDelete.Image = global::InCinema.Properties.Resources.ico_delete;
-            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(71, 22);
-            this.btnDelete.Text = "Удалить";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // FormSession
             // 

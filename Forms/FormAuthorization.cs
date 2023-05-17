@@ -13,12 +13,12 @@ namespace InCinema.Forms
         {
             this.cashierTableTableAdapter.Fill(this.cinemaDBDataSet.CashierTable);
         }
-
+        //выход из формы
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        //поиск кассира на основании введеных данных Логина и Пароль
         private void btnOpen_Click(object sender, EventArgs e)
         {
 
@@ -28,6 +28,7 @@ namespace InCinema.Forms
                 {
                     if (txtPass.Text == cinemaDBDataSet.Tables["CashierTable"].Rows[i][2].ToString())
                     {
+                        //при удачном нахождении касссира в базе - переход на формы для кассиров
                         FormCashier formCashier = new FormCashier();
                         formCashier.Show();
                         break;
@@ -35,13 +36,15 @@ namespace InCinema.Forms
                 }
                 else
                 {
-                    MessageBox.Show("Вы правильно введеные данные");
+                    //при неудачном нахождении кассира в базе
+                    MessageBox.Show("Пользователь не найден!", "InCinema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     txtPass.Text = "";
                     txtLogin.Text = "";
                     break;
                 }
             }
         }
+        //метод для активации кнопки btnOpen
         private void ValidateTextBoxes()
         {
             if (txtLogin.Text.Length != 0 && txtPass.Text.Length != 0)
@@ -53,12 +56,12 @@ namespace InCinema.Forms
                 btnOpen.Enabled = false;
             }
         }
-
+        //валидация поля Логин при изменении текста
         private void txtLogin_TextChanged(object sender, EventArgs e)
         {
             ValidateTextBoxes();
         }
-
+        //валидация поля Пароль при изменении текста
         private void txtPass_TextChanged(object sender, EventArgs e)
         {
             ValidateTextBoxes();

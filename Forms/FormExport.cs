@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -20,7 +14,7 @@ namespace InCinema.Forms
         {
             InitializeComponent();
         }
-
+        //закгрузка данных об кассовых сборах фильмов в datagridview
         private void FormExport_Load(object sender, EventArgs e)
         {
             try
@@ -28,7 +22,6 @@ namespace InCinema.Forms
                 myConnection = new SqlConnection(SqlConnectionString);
                 myConnection.Open();
                 string query = "SELECT [FilmTable].[Title],[MoneyTable].[AllPrice] FROM [MoneyTable],[FilmTable] WHERE [MoneyTable].[TitleFilm] = [FilmTable].[Id]";
-
                 var comand = new SqlCommand(query);
                 comand.Connection = myConnection;
                 var reader = comand.ExecuteReader();
@@ -58,7 +51,7 @@ namespace InCinema.Forms
                 myConnection.Close();
             }
         }
-
+        //экспорт данных из datagridview в формат Excel
         private void btnExport_Click(object sender, EventArgs e)
         {
             Excel.Application xlApp = new Excel.Application();

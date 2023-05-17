@@ -1,8 +1,5 @@
 ﻿using InCinema.Forms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InCinema
@@ -17,7 +14,7 @@ namespace InCinema
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormCashier());
+            Application.Run(new FormSessions());
         }
     }
 }

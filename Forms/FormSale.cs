@@ -14,6 +14,7 @@ namespace InCinema.Forms
         int dop;
         int dopM;
         decimal dopPrice;
+        //загрузка данных о сенссе в форму для продажи
         public FormSale(string id,string name, string date, string time, string Price, string Count)
         {
             InitializeComponent();
@@ -119,7 +120,7 @@ namespace InCinema.Forms
 
                 if (reader.HasRows == false)
                 {
-                    MessageBox.Show("Данные не найдены!");
+                    //MessageBox.Show("Данные не найдены!");
                 }
                 else
                 {

@@ -10,6 +10,7 @@ namespace InCinema.Forms
         {
             InitializeComponent();
         }
+        //метод валидации полей
         private void ValidateTextBoxes()
         {
             if (txtTitle.Text.Length != 0 && txtTime.Text.Length != 0 && txtStyle.Text.Length != 0 && txtPoster.Text.Length != 0)
@@ -18,7 +19,7 @@ namespace InCinema.Forms
             }
             else btnSave.Enabled = false;
         }
-
+        //запрет на ввод всех символов, кроме цифр и backspace для поля txtxTime
         private void txtTime_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -27,12 +28,12 @@ namespace InCinema.Forms
                 e.Handled = true;
             }
         }
-
+        //закрытие формы
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        //сохранение данных о фильме в базу данных и закрытие текущей формы
         private void btnSave_Click(object sender, EventArgs e)
         {
             FormFilms main = this.Owner as FormFilms;
@@ -51,22 +52,22 @@ namespace InCinema.Forms
                 main.dgvFilms.Refresh();
             }
         }
-
+        //валидация поля Название при изменении текста
         private void txtTitle_TextChanged(object sender, EventArgs e)
         {
             ValidateTextBoxes();
         }
-
+        //валидация поля Жанр при изменении текста
         private void txtStyle_TextChanged(object sender, EventArgs e)
         {
             ValidateTextBoxes();
         }
-
+        //валидация поля Время при изменении текста
         private void txtTime_TextChanged(object sender, EventArgs e)
         {
             ValidateTextBoxes();
         }
-
+        //валидация поля Постер при изменении текста и закрузка в picturebox картинки из поля Постер
         private void txtPoster_TextChanged(object sender, EventArgs e)
         {
             ValidateTextBoxes();

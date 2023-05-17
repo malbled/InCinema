@@ -22,13 +22,14 @@ namespace InCinema.Forms
             InitializeComponent();
             myConnection = new SqlConnection(SqlConnectionString);
         }
-
+        //открытие формы для добавления сеанса
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FormAddSession frm = new FormAddSession();
             frm.ShowDialog(this);
         }
-
+        //удаление сеанса
+        //сеанс не может быть удален, если на него уже куплены билеты
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -76,7 +77,7 @@ namespace InCinema.Forms
                             LoadPrint();
                         }
                     }
-                    else MessageBox.Show("Удаление Сеанса невозможно, поскольку на него уже проданы билеты", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else MessageBox.Show("Удаление Сеанса невозможно!\nПоскольку на него уже проданы билеты", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -88,6 +89,7 @@ namespace InCinema.Forms
                 myConnection.Close();
             }
         }
+        //метод сортировки столбцов таблицы
         private DataGridViewColumn COL;
         private void btnSort_Click(object sender, EventArgs e)
         {
@@ -110,21 +112,22 @@ namespace InCinema.Forms
                 dgvSession.Sort(COL, ListSortDirection.Descending);
             }
         }
-
+        //активация кнопки btnSort после выбора поля для сортировки
         private void listBoxSort_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnSort.Enabled = true;
         }
-
+        //при загрузке формы
         private void FormSession_Load(object sender, EventArgs e)
         {
             LoadPrint();
-
         }
+        //активация кнопок при выборе строки из datagridview
         private void dgvSession_SelectionChanged(object sender, EventArgs e)
         {
             btnDelete.Enabled = btnSale.Enabled = dgvSession.SelectedRows.Count > 0;
         }
+        //закрузка данных о сенсах в datagridview
         public void LoadPrint()
         {
             try
@@ -166,13 +169,13 @@ namespace InCinema.Forms
                 myConnection.Close();
             }
         }
-
+        //открытие формы продажи билета и передача данных о выбранном сеансе
         public void btnSale_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dgvSession.SelectedRows)
             {
                 id = row.Cells[0].Value.ToString();
-                Name  = row.Cells[1].Value.ToString();
+                Name = row.Cells[1].Value.ToString();
                 Date = row.Cells[2].Value.ToString();
                 Time = row.Cells[3].Value.ToString();
                 Price = row.Cells[4].Value.ToString();
@@ -180,6 +183,16 @@ namespace InCinema.Forms
             }
             FormSale formSale = new FormSale(id,Name,Date,Time,Price,Count);
             formSale.ShowDialog(this);
+        }
+        //сохранение изменений в сеансах и удаление сеансов которые уже прошли(предыдущие даты)
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string gueryD = $"DELETE [SessionTable] WHERE [SessionTable].[Date] < CONVERT(date, GETDATE())";
+            SqlConnection connectionD = new SqlConnection(SqlConnectionString);
+            connectionD.Open();
+            SqlCommand commandD = new SqlCommand(gueryD, connectionD);
+            commandD.ExecuteNonQuery();
+            connectionD.Close();
         }
     }
 }
